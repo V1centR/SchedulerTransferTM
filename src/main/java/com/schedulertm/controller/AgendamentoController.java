@@ -1,9 +1,10 @@
 package com.schedulertm.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -42,10 +43,9 @@ public class AgendamentoController {
 	
 	@CrossOrigin
 	@PostMapping
-	public String registerAgendamento(@RequestBody String postData) {
+	public ResponseEntity<Agendamento> registerAgendamento(@RequestBody Agendamento postData) {
 		
-		
-		return "OK";
+		return new ResponseEntity<>(service.createAgendamento(postData), HttpStatus.CREATED);
 	}
 	
 	

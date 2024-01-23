@@ -3,7 +3,6 @@ package com.schedulertm.impl;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,8 +20,18 @@ public class AgendamentoImpl implements AgendamentoService{
 	
 	@Override
 	public Agendamento createAgendamento(Agendamento agendamento) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Agendamento obj = new Agendamento();
+		obj.setDataRegistro(dateStampNow());
+		obj.setCtaOrigem(agendamento.getCtaOrigem());
+		obj.setCtaDestino(agendamento.getCtaDestino());
+		obj.setDataTransferencia(agendamento.getDataTransferencia());
+		obj.setValorTransferencia(agendamento.getValorTransferencia());
+		obj.setTaxaAplicavel("10");
+		obj.setStatus(agendamento.getStatus());
+		
+		return repository.save(obj);
+		
 	}
 	
 	@Override
@@ -33,11 +42,7 @@ public class AgendamentoImpl implements AgendamentoService{
 	
 	@Override
 	public List<Agendamento> getTodayAgendamento() {
-		
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy");  
-		LocalDateTime now = LocalDateTime.now();
-		
-		return repository.findToday(dtf.format(now));
+		return repository.findToday(dateStampNow());
 	}
 	
 
@@ -63,6 +68,14 @@ public class AgendamentoImpl implements AgendamentoService{
 	public void deleteAgendamento(Integer id) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	private String dateStampNow() {
+		
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy");  
+		LocalDateTime now = LocalDateTime.now();
+		
+		return dtf.format(now);
 	}
 	
 
