@@ -15,8 +15,7 @@ import com.schedulertm.service.AgendamentoService;
 public class AgendamentoImpl implements AgendamentoService{
 
 	@Autowired
-	AgendamentoRepo repository;
-	
+	AgendamentoRepo repository;	
 	
 	@Override
 	public Agendamento createAgendamento(Agendamento agendamento) {
@@ -27,7 +26,7 @@ public class AgendamentoImpl implements AgendamentoService{
 		obj.setCtaDestino(agendamento.getCtaDestino());
 		obj.setDataTransferencia(agendamento.getDataTransferencia());
 		obj.setValorTransferencia(agendamento.getValorTransferencia());
-		obj.setTaxaAplicavel("10");
+		obj.setTaxaAplicavel(agendamento.getTaxaAplicavel());
 		obj.setStatus(agendamento.getStatus());
 		
 		return repository.save(obj);

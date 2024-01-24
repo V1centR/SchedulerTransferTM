@@ -8,16 +8,12 @@ import jakarta.persistence.Id;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @Entity
 @Table(name = "AGENDAMENTO")
 public class Agendamento {
@@ -49,11 +45,5 @@ public class Agendamento {
 	
 	@Column(name = "STATUS", nullable = false)
 	private String status;
-	
-	public Agendamento(String ctaOrigem2, String ctaDestino2, String dataRegistro2, String dataTransferencia2,
-			String valorTransferencia2, String taxaAplicavel2, String status2) {
-		// TODO Auto-generated constructor stub
-	}
-
 	
 }

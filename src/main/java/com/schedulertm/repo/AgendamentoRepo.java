@@ -11,7 +11,6 @@ import com.schedulertm.entities.Agendamento;
 @Repository
 public interface AgendamentoRepo extends JpaRepository<Agendamento, Integer> {
 	
-	// SELECT * FROM AGENDAMENTO WHERE DATAREGISTRO BETWEEN '22/01/2024' AND '22/01/2024';
 	@Query(value="SELECT * FROM AGENDAMENTO WHERE DATAREGISTRO = :today",nativeQuery = true)
 	List<Agendamento> findToday(String today);
 	
